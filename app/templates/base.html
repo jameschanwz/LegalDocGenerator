@@ -3,6 +3,17 @@
 {% block content %}
 <h1> Testing base </h1>
 <h2> test branch <h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li class="text-danger">{{ message }}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 {% block app_content %}
 
 {% endblock %}
