@@ -4,6 +4,7 @@ from app.forms import NDAForm
 from flask_mail import Message
 from app import mail
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -15,5 +16,5 @@ def nda():
 	if form.validate_on_submit():
 		flash ('NDA template created for {}'.format(form.partyname.data))
 		send_email('Automatic NDA', sender=app.config['ADMINS'][0], recipients = 'ilithrais@gmail.com', text_body='Test', html_body='test')
-
-return render_template('NDA.html',title="NDA", form=form)
+		
+	return render_template('NDA.html',title="NDA", form=form)
