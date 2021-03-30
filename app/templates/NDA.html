@@ -4,4 +4,8 @@
 <h1> NDA </h1>
 {{ wtf.quick_form(form) }}
 
+{% if link %}
+<a href={{ url_for('download') }}>{{ link }}</a>
+{% endif %}
+
 {% endblock %}
