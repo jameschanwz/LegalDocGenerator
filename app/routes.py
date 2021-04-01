@@ -1,9 +1,9 @@
 from app import app
-from flask import render_template, flash
+from flask import render_template, flash, send_file
 from app.forms import NDAForm
 from flask_mail import Message
 from app import mail
-
+from app.doc import create_nda
 
 @app.route('/')
 @app.route('/index')
@@ -15,6 +15,15 @@ def nda():
 	form = NDAForm()
 	if form.validate_on_submit():
 		flash ('NDA template created for {}'.format(form.partyname.data))
-		send_email('Automatic NDA', sender=app.config['ADMINS'][0], recipients = 'ilithrais@gmail.com', text_body='Test', html_body='test')
+		create_nda(form.partyname.data, "test1")
 		
 	return render_template('NDA.html',title="NDA", form=form)
+
+@app.route('/menu')
+def menu():
+	return render_template('menu.html')
+
+@app.route('/download')
+def download():
+	path = 'C:\\Users\\james\\OneDrive\\Desktop\\Coding\\LegalDocGenerator\\LegalDocGenerator\\test1.docx'
+	return send_file(path,as_attachment=True)
