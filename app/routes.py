@@ -18,3 +18,8 @@ def nda():
 		send_email('Automatic NDA', sender=app.config['ADMINS'][0], recipients = 'ilithrais@gmail.com', text_body='Test', html_body='test')
 		
 	return render_template('NDA.html',title="NDA", form=form)
+
+@app.route('/download/<filecode>', methods=['GET','POST']
+def download(filecode):
+	
+	return render_template('download.html',title="download")
