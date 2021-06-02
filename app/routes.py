@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, flash, send_file
+from flask import render_template, flash, send_file, redirect
 from app.forms import NDAForm
 from flask_mail import Message
 from app import mail
@@ -19,11 +19,7 @@ def nda():
 		
 	return render_template('NDA.html',title="NDA", form=form)
 
-@app.route('/menu')
-def menu():
-	return render_template('menu.html')
-
 @app.route('/download')
 def download():
-	path = 'C:\\Users\\james\\OneDrive\\Desktop\\Coding\\LegalDocGenerator\\LegalDocGenerator\\test1.docx'
+	path = 'C:\\Users\\jamchan\\Desktop\\Coding\\LegalDocGenerator\\test1.docx'
 	return send_file(path,as_attachment=True)
